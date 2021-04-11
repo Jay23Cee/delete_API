@@ -1,55 +1,61 @@
-
-import { v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import {
   FETCH_BOOK,
   EDIT_BOOK,
   DELETE_BOOK,
   NEW_BOOK,
-} from "../book/actionType"
-
+} from "../book/actionType";
+import { CreateBook, DeleteBook, fetchBooks, EditBook } from "../../utils";
 import { AppAction } from "../book/actionType";
 import { Book } from "../book/Book";
 import { Dispatch } from "redux";
 import AppState from "../store";
-import { BookTable } from '../../components/BookTable';
 
+export const TodayDate = () => {
+  const today = new Date();
 
+  return today.toString();
+};
 
+// Simplified
 
-// Simplified 
+export const startFetchBook = () => {
+  return async (
+    dispatch: Dispatch<AppAction>,
+    getState: () => typeof AppState
+  ) => {
+    const books = await fetchBooks();
+    dispatch({ type: FETCH_BOOK, payload: books });
+  };
+};
+
 export const startEditBook = (book: Book) => {
   return (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
-    dispatch({ type: EDIT_BOOK,
-      book:book});
-  };
-}
-
-export const startNewBook = (book:Book) => {
-  return (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
-  
-  //  const books = { title, author, date, key};
-    return dispatch(
-     {
-      type: NEW_BOOK ,
-      book: book
-     }
-    );
+    EditBook(book);
+    dispatch({ type: EDIT_BOOK, payload: book });
   };
 };
 
-
-export const startFetchBook = (books: Book[]) => {
+export const startDeleteBook = (book: Partial<Book>) => {
   return (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
-    dispatch({  type: FETCH_BOOK,
-      book:books,});
-  };
-};
-
-export const startDeleteBook = (key:string) => {
-  return(dispatch: Dispatch<AppAction>, getState: () => typeof AppState ) => {
+    DeleteBook(book);
+    if (!book.id) {
+      return;
+    }
     dispatch({
       type: DELETE_BOOK,
-      key:key,
+      payload: book.id,
     });
   };
-}
+};
+
+export const startNewBook = (book: Book) => {
+  return (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
+    CreateBook(book);
+
+    return dispatch({
+      type: NEW_BOOK,
+      payload: book,
+    });
+  };
+};

@@ -8,24 +8,29 @@ export const FETCH_BOOK = "FETCH_BOOK";
 export const DELETE_BOOK = "DELETE_BOOK";
 
 
+
+export const bookAPI ='http://localhost:3001';
+
+
 export interface DeleteBookAction {
     type: typeof DELETE_BOOK;
-    key:string;
+    payload: string;
 }
 
 export interface EditBookAction {
     type: typeof EDIT_BOOK;
-    book: Book;
+    payload: Book;
 }
 
 export interface FetchBookAction {
     type: typeof FETCH_BOOK;
-    book: Book[];
+    payload:Book[];
+    
 }
 
 export interface NewBookAction {
     type: typeof NEW_BOOK;
-    book: Book;
+    payload: Book;
 }
 
 
