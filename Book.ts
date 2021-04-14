@@ -1,4 +1,3 @@
-// Todo: better to IBook
 export interface Book {
   id?: string;
   title: string;
@@ -6,6 +5,13 @@ export interface Book {
   date?: string;
 }
 
-export const BookRedeucerDefaultState: Book[] = [];
+interface AllBooks{ 
+  books: Book[]
+}
 
-// {books:Book[], currentBook: Book}
+interface CurrentBook{
+   currentBook : Book | undefined
+}
+
+export type BookReducerDefaultState = AllBooks & CurrentBook
+

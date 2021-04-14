@@ -30,15 +30,15 @@ export const startFetchBook = () => {
 };
 
 export const startEditBook = (book: Book) => {
-  return (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
-    EditBook(book);
+  return async (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
+    await EditBook(book);
     dispatch({ type: EDIT_BOOK, payload: book });
   };
 };
 
 export const startDeleteBook = (book: Partial<Book>) => {
-  return (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
-    DeleteBook(book);
+  return async (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
+    await DeleteBook(book);
     if (!book.id) {
       return;
     }
@@ -50,8 +50,8 @@ export const startDeleteBook = (book: Partial<Book>) => {
 };
 
 export const startNewBook = (book: Book) => {
-  return (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
-    CreateBook(book);
+  return async (dispatch: Dispatch<AppAction>, getState: () => typeof AppState) => {
+    await CreateBook(book);
 
     return dispatch({
       type: NEW_BOOK,

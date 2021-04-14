@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FC } from "react";
 import { Table, Input, InputNumber, Popconfirm, Form, Typography } from "antd";
 
-import { Book } from "../store/book/Book";
+import { Book ,  BookReducerDefaultState} from "../store/book/Book";
 
 import { AppState } from "../store/store";
 import { connect } from "react-redux";
@@ -36,7 +36,7 @@ const BookTable: FC<Props> = (props: Props) => {
 
   useEffect(() => {
     props.startFetchBook();
-  }, []);
+  }, [props.originData.currentBook]);   
 
   const save = async (record: Book) => {
     try {
@@ -133,7 +133,7 @@ const BookTable: FC<Props> = (props: Props) => {
             },
           }}
           bordered
-          dataSource={props.originData}
+          dataSource={props.originData.books}
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
@@ -198,7 +198,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
 };
 
 export interface LinkStateProps {
-  originData: Book[];
+  originData: BookReducerDefaultState;
 }
 
 export interface LinkDispatchProps {

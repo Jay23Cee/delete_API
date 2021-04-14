@@ -10,13 +10,11 @@ import "antd/dist/antd.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-// import {IRootState} from './store/store';
 
 const { Content } = Layout;
 
 const App = () => {
-  // const bookState = useSelector((state:RootStore) => state.books);
-  // console.log(bookState.map)
+
   return (
     <BrowserRouter>
       <Provider store={store}>

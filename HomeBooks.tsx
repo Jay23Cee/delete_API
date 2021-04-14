@@ -1,6 +1,6 @@
 import { Layout, Breadcrumb } from "antd";
 import "../App.css";
-import "antd/dist/antd.css";
+
 import BookTable from "./BookTable";
 
 const { Content } = Layout;
@@ -18,5 +18,4 @@ const Homepage = () => (
   </Content>
 );
 
-// export default connect(mapStateToProps, mapDispatchToProps) (Homepage);
 export default Homepage;

@@ -1,7 +1,7 @@
 import { Form, Input, Menu, Breadcrumb, Button, Modal } from "antd";
 import { FC , useState} from "react";
 
-import { Book } from "../store/book/Book";
+import { Book, BookReducerDefaultState } from "../store/book/Book";
 import { AppState } from "../store/store";
 import { connect } from "react-redux";
 import { AppAction } from "../store/book/actionType";
@@ -69,7 +69,7 @@ const validateMessages = {
 type Props = BookTableProps & LinkStateProps & LinkDispatchProps;
 
 interface LinkStateProps {
-  originData: Book[];
+  originData: BookReducerDefaultState;
 }
 
 interface LinkDispatchProps {
